@@ -14,8 +14,8 @@ pipeline {
             steps {
                 sh "chmod +x -R ${env.WORKSPACE}"
                 sh '''
-                    ./pipeline6/mvn.sh mvn -B -DskipTests clean package
-                    ./pipeline6/build.sh
+                    ./pipeline6/java-app/mvn.sh mvn -B -DskipTests clean package
+                    ./pipeline6/java-app/build.sh
                 '''
             }
 
