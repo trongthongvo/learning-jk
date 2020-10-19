@@ -1,0 +1,21 @@
+pipeline {
+  agent any
+  options {
+    buildDiscarder(logRotator(numToKeepStr: '5'))
+  }
+  
+  stages {
+    stage('docker build'){
+      steps{
+        sh "docker build -t trongthongvo/test:5 -f /home/root/workspace/1/s05/python-simple-app/Dockerfile ."
+        sh "docker ps"
+        sh "whoami"
+      }
+    }
+  }
+  post {
+    always {
+      sh 'echo "This will always run"'
+    }
+  }
+}

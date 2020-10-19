@@ -1,0 +1,31 @@
+pipeline {
+    agent none
+    stages {
+        stage('Git Clone'){
+          agent any
+          steps{  
+        git branch: 'main', credentialsId: 'bf94f267-6ef4-421d-8d4c-374252fb8d0f', url: 'https://github.com/trongthongvo/jenkins-101.git'            
+        }
+        }
+        stage('Finished clone'){
+          agent any
+          steps{ 
+            sh 'echo Finnish clone'
+          }          
+        }
+        stage('Deploy'){
+          agent any
+          steps{
+            sh '''cd /home/root/workspace/cd-2/s05/python-simple-app/
+            echo $PWD
+            whoami
+            docker build -t trongthongvo/python-app:$BUILD_NUMBER .
+            docker container run -itd --name python-app$BUILD_NUMBER -p 8080 trongthongvo/python-app:$BUILD_NUMBER
+            echo $BUILD_NUMBER
+            docker ps -a
+            sudo docker push trongthongvo/python-app:$BUILD_NUMBER'''
+        }
+}
+
+    }
+}
