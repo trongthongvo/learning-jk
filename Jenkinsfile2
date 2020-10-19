@@ -13,8 +13,8 @@ pipeline {
             //agent {label 'mynode2'}
             steps {
                 sh '''
-                    ./pipeline6/jenkins/build/mvn.sh mvn -B -DskipTests clean package
-                    ./pipeline6/jenkins/build/build.sh
+                    ./pipeline6/mvn.sh mvn -B -DskipTests clean package
+                    ./pipeline6/build.sh
                 '''
             }
 
@@ -28,7 +28,7 @@ pipeline {
         stage('Test') {
             //agent {label 'mynode2'}
             steps {
-                sh './pipeline6/jenkins/test/mvn.sh mvn test'
+                sh './pipeline6/mvn.sh mvn test'
             }
 
             post {
