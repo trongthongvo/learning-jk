@@ -1,7 +1,7 @@
 pipeline {
 
     //agent none
-    agent {label 'mynode2'}
+    agent {label 'slave'}
     
     // environment {
     //   PASS = credentials('registry-pass') 
