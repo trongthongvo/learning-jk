@@ -12,6 +12,7 @@ pipeline {
         stage('Build') {
             //agent {label 'mynode2'}
             steps {
+                sh "chmod +x -R ${env.WORKSPACE}"
                 sh '''
                     ./pipeline6/mvn.sh mvn -B -DskipTests clean package
                     ./pipeline6/build.sh
