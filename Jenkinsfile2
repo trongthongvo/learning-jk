@@ -41,14 +41,14 @@ pipeline {
         stage('Push') {
             //agent {label 'mynode2'}
             steps {
-                sh './pipeline6/jenkins/push/push.sh'
+                sh './pipeline6/push.sh'
             }
         }
 
         stage('Deploy') {
             //agent {label 'mynode2'}
             steps {
-                sh './pipeline6/jenkins/deploy/deploy.sh'
+                sh './pipeline6/deploy.sh'
             }
         }
     }
